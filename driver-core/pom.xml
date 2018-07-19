@@ -189,7 +189,16 @@
                     <altDeploymentRepository>bintray::default::https://api.bintray.com/maven/appmetr/maven/cassandra-java-driver</altDeploymentRepository>
                 </configuration>
             </plugin>
-            
+            <plugin>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
