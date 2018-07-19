@@ -25,6 +25,7 @@
         <version>3.5.1</version>
     </parent>
 
+    <groupId>com.appmetr</groupId>
     <artifactId>cassandra-driver-core</artifactId>
     <name>DataStax Java Driver for Apache Cassandra - Core</name>
     <description>
