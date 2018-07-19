@@ -1114,10 +1114,10 @@ limitations under the License.
     </licenses>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com/appmetr/java-driver.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/appmetr/java-driver.git</developerConnection>
-        <url>http://github.com/appmetr/java-driver</url>
-        <tag>HEAD</tag>
+        <connection>scm:git:git@github.com:datastax/java-driver.git</connection>
+        <developerConnection>scm:git:git@github.com:datastax/java-driver.git</developerConnection>
+        <url>https://github.com/datastax/java-driver</url>
+        <tag>3.5.1</tag>
     </scm>
 
     <developers>
