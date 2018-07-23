@@ -795,8 +795,7 @@ class RequestHandler {
             try {
                 connection.release();
 
-                if ((exception instanceof ConnectionException) ||
-                        (exception instanceof ReadFailureException)) {
+                if (exception instanceof DriverException) {
                     RetryPolicy.RetryDecision decision = computeRetryDecisionOnRequestError((DriverException) exception);
                     processRetryDecision(decision, connection, exception);
                     return;
