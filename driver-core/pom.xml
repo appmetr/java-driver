@@ -219,20 +219,17 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!--
-            We avoid packaging bundle because it does not play nicely with the shade plugin, see
-            https://stackoverflow.com/questions/31262032/maven-shade-plugin-and-custom-packaging-type
-            -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-test-sources</id>
-                        <goals>
-                            <goal>test-jar-no-fork</goal>
-                        </goals>
+                        <id>check-jdk6</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>check-jdk8</id>
+                        <phase>none</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -240,32 +237,6 @@
         </plugins>
 
     </build>
-
-    <profiles>
-
-        <profile>
-            <id>isolated</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <skip>false</skip>
-                            <includes>
-                                <include>**/SSL*Test.java</include>
-                                <include>**/ControlConnectionTest.java</include>
-                                <include>**/ExtendedPeerCheckDisabledTest.java</include>
-                                <include>**/UUIDsPID*.java</include>
-                                <include>**/FrameLengthTest.java</include>
-                                <include>**/HeapCompressionTest.java</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-    </profiles>
 
 </project>
 
