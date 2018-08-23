@@ -675,6 +675,23 @@ class RequestHandler {
                                 write(connection, prepareAndRetry(toPrepare.getQueryString()));
                                 // we're done for now, the prepareAndRetry callback will handle the rest
                                 return;
+                            case READ_FAILURE:
+                                assert exceptionToReport instanceof ReadFailureException;
+                                connection.release();
+                                retry =
+                                        computeRetryDecisionOnRequestError((ReadFailureException) exceptionToReport);
+                                break;
+                            case WRITE_FAILURE:
+                                assert exceptionToReport instanceof WriteFailureException;
+                                connection.release();
+                                if (statement.isIdempotentWithDefault(
+                                        manager.cluster.getConfiguration().getQueryOptions())) {
+                                    retry =
+                                            computeRetryDecisionOnRequestError((WriteFailureException) exceptionToReport);
+                                } else {
+                                    retry = RetryPolicy.RetryDecision.rethrow();
+                                }
+                                break;
                             default:
                                 connection.release();
                                 if (metricsEnabled())
